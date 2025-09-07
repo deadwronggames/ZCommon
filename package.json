@@ -1,0 +1,11 @@
+{
+    "name": "com.deadwronggames.zcommon",
+    "version": "1.0.0",
+    "displayName": "ZCommon",
+    "description": "Classes, Structs, interfaces and Enums that are useful for all kinds of programming patterns.\n\nUse via DeadWrongGames.ZCommon namespace",
+    "unity": "2022.3",
+    "author": {
+        "name": "DeadWrong Games",
+        "url": "hhtps://x.com/DeadWrong_Games"
+    }
+}
