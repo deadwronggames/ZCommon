@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DeadWrongGames.ZCommon.Variables
 {
-    public abstract class BaseVariable : ScriptableObject
+    public abstract class BaseVariableSO : ScriptableObject
     {
         public event Action ValueChanged; // other classes that want to data-bind to the value can subscribe to this
 

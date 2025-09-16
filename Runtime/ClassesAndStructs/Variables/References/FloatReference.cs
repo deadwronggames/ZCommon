@@ -4,7 +4,7 @@ namespace DeadWrongGames.ZCommon.Variables
 {
     public class FloatReference : BaseReference
     {
-        [SerializeField] FloatVariable _variable;
+        [SerializeField] FloatVariableSO _variable;
         [SerializeField] float _constantValue;
         [SerializeField] bool _doAlwaysUseConstValue;
         

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace DeadWrongGames.ZCommon.Variables
 {
     [CreateAssetMenu(menuName = "Scriptable Objects/Variables/Float", fileName = "FloatVariable")]
-    public class FloatVariable : BaseVariable
+    public class FloatVariableSO : BaseVariableSO
     {
         [SerializeField] float _value;
         
@@ -13,7 +13,7 @@ namespace DeadWrongGames.ZCommon.Variables
             set => _value = (float)value;
         }
         
-        public static implicit operator float(FloatVariable reference)
+        public static implicit operator float(FloatVariableSO reference)
             => reference.Value;
     }
 }
