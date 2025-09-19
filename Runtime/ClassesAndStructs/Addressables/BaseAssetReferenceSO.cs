@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DeadWrongGames.ZUtils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -40,6 +41,22 @@ namespace DeadWrongGames.ZCommon
         // Relay methods, to be used similarly to AssetReference methods  
         public virtual AsyncOperationHandle<TAsset> LoadAssetAsync() => Addressables.LoadAssetAsync<TAsset>(_key);
         public virtual void ReleaseAsset(AsyncOperationHandle<TAsset> handle) => Addressables.Release(handle);
+        
+        /// <summary>
+        /// Loads the asset safely, catching exceptions and logging a warning if it fails.
+        /// Since handle is not returned, can never be actively unloaded.
+        /// </summary>
+        public async Task<TAsset> LoadAssetSafeAsync()
+        {
+            try {
+                AsyncOperationHandle<TAsset> handle = LoadAssetAsync();
+                return await handle.Task;
+            }
+            catch (Exception e) {
+                $"Failed to load asset {_key}: {e}".Log(level: ZMethodsDebug.LogLevel.Error);
+                return null;
+            }
+        }
 
 
 #if UNITY_EDITOR

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using DeadWrongGames.ZUtils;
 using Sirenix.OdinInspector;
-using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+
+#if UNITY_EDITOR
+using UnityEditor.AddressableAssets.Settings;
+#endif
 
 
 namespace DeadWrongGames.ZCommon
