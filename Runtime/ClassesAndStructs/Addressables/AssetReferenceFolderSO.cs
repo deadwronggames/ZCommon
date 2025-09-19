@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DeadWrongGames.ZUtils;
@@ -11,25 +12,25 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace DeadWrongGames.ZCommon
 {
     [CreateAssetMenu(menuName = "Scriptable Objects/Addressables/ReferenceFolder", fileName = "AssetReferenceFolder")]
-    public class AssetReferenceFolderSO : BaseAssetReferenceSO<Object, AssetReference>
+    public class AssetReferenceFolderSO : BaseAssetReferenceSO<UnityEngine.Object, AssetReference>
     {
         [SerializeField, ReadOnly] List<string> _subKeys = new();
         
         // Load all assets in folder
-        public AsyncOperationHandle<IList<TAsset>> LoadAssetsAsync<TAsset>() where TAsset : Object
+        public AsyncOperationHandle<IList<TAsset>> LoadAssetsAsync<TAsset>(Action<TAsset> assetCallback = null) where TAsset : UnityEngine.Object
         {
-            AsyncOperationHandle<IList<TAsset>> handle = Addressables.LoadAssetsAsync<TAsset>(_subKeys, _ => { }, Addressables.MergeMode.Union);
+            AsyncOperationHandle<IList<TAsset>> handle = Addressables.LoadAssetsAsync(_subKeys, assetCallback ?? (_ => { }), Addressables.MergeMode.Union);
             return handle;
         }
         
         // "Disable" the not applicable methods
-        public override AsyncOperationHandle<Object> LoadAssetAsync()
+        public override AsyncOperationHandle<UnityEngine.Object> LoadAssetAsync()
         {
             $"{name}: Cannot load single asset from a folder. Use LoadAssetsAsync instead. Returning default.".Log(level: ZMethodsDebug.LogLevel.Error);
             return default;
         }
         
-        public override void ReleaseAsset(AsyncOperationHandle<Object> handle)
+        public override void ReleaseAsset(AsyncOperationHandle<UnityEngine.Object> handle)
         {
             "{name}: Cannot release a single asset. Use ReleaseAssets instead. Returning.".Log(level: ZMethodsDebug.LogLevel.Error);
         }
