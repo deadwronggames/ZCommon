@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace DeadWrongGames.ZCommon.Variables
 {
+    /// <summary>
+    /// Float variable ScriptableObject that supports data binding.
+    /// </summary>
     [CreateAssetMenu(menuName = "Scriptable Objects/Variables/Float", fileName = "FloatVariable")]
     public class FloatVariableSO : BaseVariableSO
     {

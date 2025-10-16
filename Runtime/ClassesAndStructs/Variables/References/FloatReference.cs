@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace DeadWrongGames.ZCommon.Variables
 {
+    /// <summary>
+    /// Reference wrapper for float values.
+    /// Can use either a constant value or a ScriptableObject variable.
+    /// </summary>
     public class FloatReference : BaseReference
     {
         [SerializeField] FloatVariableSO _variable;
