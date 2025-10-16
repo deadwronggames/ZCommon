@@ -36,7 +36,7 @@
 ```csharp
 // Access the value in code
 float speed = myFloatVariableSO.Value;
-
+```
 
 ### References
 1. Add e.g. the FloatReference MonoBehaviour to a GameObject in your scene.
