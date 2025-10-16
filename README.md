@@ -1,4 +1,6 @@
-![Banner](https://raw.githubusercontent.com/deadwronggames/ZSharedAssets/main/Banner_Zombie.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/deadwronggames/ZSharedAssets/main/Banner_Zombie.jpg" alt="ZCommon Banner" style="width: 100%; max-width: 1200px; height: auto;">
+</p>
 
 # ZCommon
 ZCommon is a foundational Unity package designed to provide reusable and flexible programming patterns across any project. It demonstrates modular architecture, type safety, and data-driven workflows.
