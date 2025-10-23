@@ -8,7 +8,7 @@ ZCommon is a foundational Unity package designed to provide reusable and flexibl
 
 ## Overview and Design Highlights
 - **Data-Binding-Friendly Variables**  
-  ScriptableObject variables (`BaseVariableSO`, `FloatVariableSO`) emit events on value changes, support data binding, enabling reactive and decoupled systems.
+  ScriptableObject variables (`BaseVariableSO`, `FloatVariableSO`), as well as plain C\# variables (`BaseVariable`, `FloatVariable`). Emit events on value changes, support data binding, enabling reactive and decoupled systems.
 - **Flexible Data References**  
   Allows seamless switching between constants and ScriptableObject variables (`FloatReference`, `BaseReference`) for flexible runtime configuration.
 - **Type-Safe Addressables Wrappers**  
@@ -19,11 +19,10 @@ ZCommon is a foundational Unity package designed to provide reusable and flexibl
 
 ## Installation
 - Install via Unity Package Manager using the Git URL: https://github.com/deadwronggames/ZCommon
-- Use the namespace: 
+- Include in your code (when needed) via the namespace: 
 ```csharp 
 using DeadWrongGames.ZCommon;
 ```
-
 
 ## Usage Examples
 
@@ -34,8 +33,24 @@ using DeadWrongGames.ZCommon;
 4. Any changes to the variable (via code or inspector) will trigger subscribed events.
 
 ```csharp
-// Access the value in code
-float speed = myFloatVariableSO.Value;
+// Read/write
+float current = MyFloatVariableSO.Value;
+MyFloatVariableSO.Value = 5f;
+
+// Subscribe to changes
+MyFloatVariableSO.ValueChanged += () => Debug.Log("MyFloatVariableSO changed");
+
+// Implicit conversion
+float v = MyFloatVariableSO; // calls implicit operator
+```
+
+### C\# Variables (BaseVariable<T>, FloatVariable)
+
+For non-asset, runtime-only data, use the runtime variable containers. These runtime containers mirror the ScriptableObject behavior (including change events and custom equality logic) but don't require assets or the Unity serialization system.
+
+```csharp
+// Create at runtime
+FloatVariable health = new(100f);
 ```
 
 ### Variable References
@@ -58,4 +73,3 @@ To swap assets: delete the old asset, assign a new one with the same Addressable
 - Easily extendable: new types can be added for variables or Addressables by inheriting base classes.
 - Developed for usage with **Odin Inspector**.
 - **Work in progress**, some functionality may change.
-

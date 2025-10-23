@@ -1,22 +1,16 @@
+using DeadWrongGames.ZUtils;
 using UnityEngine;
 
 namespace DeadWrongGames.ZCommon.Variables
 {
     /// <summary>
-    /// Float variable ScriptableObject that supports data binding.
+    /// Float-specific variable SO
+    /// Uses approximate float comparison to avoid unnecessary change events from precision noise.
     /// </summary>
     [CreateAssetMenu(menuName = "Scriptable Objects/Variables/Float", fileName = "FloatVariable")]
-    public class FloatVariableSO : BaseVariableSO
+    public class FloatVariableSO : BaseVariableSO<float>
     {
-        [SerializeField] float _value;
-        
-        public float Value => _value;
-        protected override object _valueBackingField {
-            get => _value; 
-            set => _value = (float)value;
-        }
-        
-        public static implicit operator float(FloatVariableSO reference)
-            => reference.Value;
+        protected override bool IsSameValue(float newValue)
+            => ZMethods.IsSameFloatValue(_value, newValue);
     }
 }
