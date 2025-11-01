@@ -68,6 +68,10 @@ Example: connecting a `FloatReference` to a ZModularUI button to broadcast the v
 To swap assets: delete the old asset, assign a new one with the same Addressables key. All references will automatically update. No need to manually find every usage.
 
 
+### Work-in-Progress functionality
+- Defining Actions via the inspector in a designer-friendly way. Not yet sure if and how it is useful. See for example `ActionOnAwake` or `ActionFireUnityEvent` scripts. 
+
+
 ## Notes
 - All ScriptableObject variables and Addressable references support editor-time validation.
 - Easily extendable: new types can be added for variables or Addressables by inheriting base classes.
