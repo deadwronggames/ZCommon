@@ -1,7 +1,6 @@
-namespace DeadWrongGames.ZCommon.Interfaces
+namespace DeadWrongGames.ZCommon.Interfaces;
+
+public interface IPredicate
 {
-    public interface IPredicate
-    {
-        bool Evaluate();
-    }
+    bool Evaluate();
 }
