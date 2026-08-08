@@ -1,29 +1,29 @@
-using DeadWrongGames.ZUtils;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-namespace DeadWrongGames.ZCommon;
-
-[CreateAssetMenu(menuName = "Scriptable Objects/Addressables/ReferenceSceneInstance", fileName = "AssetReferenceSceneInstance")]
-public class AssetReferenceSceneInstanceSO : BaseAssetReferenceSO<Object, AssetReference>
+namespace DeadWrongGames.ZCommon
 {
-    // AssetReference methods specifically for scenes
-    public AsyncOperationHandle<SceneInstance> LoadSceneAsync(LoadSceneMode loadMode, bool activateOnLoad) => Addressables.LoadSceneAsync(_key, loadMode, activateOnLoad);
-    public AsyncOperationHandle<SceneInstance> UnLoadScene(AsyncOperationHandle<SceneInstance> handle) => Addressables.UnloadSceneAsync(handle);
-        
-    // "Disable" the not applicable methods
-    public override AsyncOperationHandle<Object> LoadAssetAsync()
+    [CreateAssetMenu(menuName = "Scriptable Objects/Addressables/ReferenceSceneInstance", fileName = "AssetReferenceSceneInstance")]
+    public class AssetReferenceSceneInstanceSO : BaseAssetReferenceSO<Object, AssetReference>
     {
-        // TODO should ust throw and ideally be caught not here but by logger
-        // $"{name}: Can not load a SceneInstance reference. Returning default.".Log(level: ZMethodsDebug.LogLevel.Warning);
-        return default;
-    }
+        // AssetReference methods specifically for scenes
+        public AsyncOperationHandle<SceneInstance> LoadSceneAsync(LoadSceneMode loadMode, bool activateOnLoad) => Addressables.LoadSceneAsync(_key, loadMode, activateOnLoad);
+        public AsyncOperationHandle<SceneInstance> UnLoadScene(AsyncOperationHandle<SceneInstance> handle) => Addressables.UnloadSceneAsync(handle);
         
-    public override void ReleaseAsset(AsyncOperationHandle<Object> handle)
-    {
-        // $"{name}: Can not release a SceneInstance reference. Returning.".Log(level: ZMethodsDebug.LogLevel.Warning);
+        // "Disable" the not applicable methods
+        public override AsyncOperationHandle<Object> LoadAssetAsync()
+        {
+            // TODO should ust throw and ideally be caught not here but by logger
+            // $"{name}: Can not load a SceneInstance reference. Returning default.".Log(level: ZMethodsDebug.LogLevel.Warning);
+            return default;
+        }
+        
+        public override void ReleaseAsset(AsyncOperationHandle<Object> handle)
+        {
+            // $"{name}: Can not release a SceneInstance reference. Returning.".Log(level: ZMethodsDebug.LogLevel.Warning);
+        }
     }
 }

@@ -1,6 +1,7 @@
-namespace DeadWrongGames.ZCommon;
-
-public interface IInvokable
+namespace DeadWrongGames.ZCommon
 {
-    void Invoke();
+    public interface IInvokable
+    {
+        void Invoke();
+    }
 }

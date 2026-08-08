@@ -1,9 +1,10 @@
-namespace DeadWrongGames.ZCommon;
-
-public enum Tier
+namespace DeadWrongGames.ZCommon
 {
-    Primary,
-    Secondary,
-    Tertiary,
-    Quaternary,
+    public enum Tier
+    {
+        Primary,
+        Secondary,
+        Tertiary,
+        Quaternary,
+    }
 }

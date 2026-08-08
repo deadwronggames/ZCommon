@@ -2,15 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace DeadWrongGames.ZCommon.Actions;
-
-[Serializable]
-public struct ActionFireUnityEvent : IInvokable
+namespace DeadWrongGames.ZCommon.Actions
 {
-    [SerializeField] UnityEvent _event;
-        
-    public void Invoke()
+    [Serializable]
+    public struct ActionFireUnityEvent : IInvokable
     {
-        _event?.Invoke();
+        [SerializeField] UnityEvent _event;
+        
+        public void Invoke()
+        {
+            _event?.Invoke();
+        }
     }
 }
