@@ -1,3 +1,6 @@
-## [1.0.0] - 2025-09-07
+## [1.0.0] - 2026-08-08
 ### First Release
-- Predicate Class and interface
+- Data-Binding-Friendly Variables
+- Flexible Data References
+- Type-Safe Addressables Wrappers
+- Predicate Class and interface and other commonly used types
