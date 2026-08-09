@@ -132,7 +132,7 @@ namespace DeadWrongGames.ZCommon
         private static void ValidateAllOfSameType()
         {
             // Find all assets of type BaseAssetReferenceSO<TAsset>
-            List<BaseAssetReferenceSO<TAsset, TAssetReference>> instances = ZMethodsDebug.FindAllSOAssetsIncludingSubclasses<BaseAssetReferenceSO<TAsset, TAssetReference>>();
+            List<BaseAssetReferenceSO<TAsset, TAssetReference>> instances = ZMethods.FindAllSOAssetsIncludingSubclasses<BaseAssetReferenceSO<TAsset, TAssetReference>>();
             
             // Check if they are valid
             int validCount = 0;

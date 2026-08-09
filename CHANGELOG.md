@@ -1,5 +1,7 @@
+## [1.0.1] - 2026-08-09
 ### Changed
 - Use Unity `Debug.Log` instead of ZUtils logging (which has been removed).
+- Update to all ZUtils helper methods now being in one partial ZMethods class.
 - Some AssetReference inheritors now throw instead of warn when misused by the developer.
 ### Fixed
 - Went back to block-scoped namespaces because unity does not like file-scoped apparently.
