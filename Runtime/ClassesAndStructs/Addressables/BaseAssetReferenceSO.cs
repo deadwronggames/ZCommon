@@ -53,7 +53,7 @@ namespace DeadWrongGames.ZCommon
                 return await handle.Task;
             }
             catch (Exception e) {
-                $"Failed to load asset {_key}: {e}".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError($"Failed to load asset {_key}: {e}. Returning null.");
                 return null;
             }
         }
@@ -80,12 +80,12 @@ namespace DeadWrongGames.ZCommon
             // Safety checks
             if (_assetReference == null)
             {
-                "Asset reference is null. Returning.".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError("Asset reference is null. Returning.");
                 return;
             }
             if (_key != NOT_SET_STRING)
             {
-                "Reference key is already set. If you want to reassign the key, clear the reference first. Returning.".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError("Reference key is already set. If you want to reassign the key, clear the reference first. Returning.");
                 return;   
             }
             
@@ -95,7 +95,7 @@ namespace DeadWrongGames.ZCommon
             _assetReference = null;
             _isValid = true;
             
-            $"{name}: New key {_key} has successfully been assigned.".Log(level: ZMethodsDebug.LogLevel.Assertion);
+            Debug.Log($"{name}: New key {_key} has successfully been assigned.");
         }
 
         /// <summary>
@@ -118,12 +118,12 @@ namespace DeadWrongGames.ZCommon
         {
             _isValid = false;
             if (string.IsNullOrEmpty(_key) || _key == NOT_SET_STRING)
-                $"{name}: Key is not set".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError($"{name}: Key is not set");
             else if (GetReferenceEntry(_key) == null)
-                $"{name}: Key {_key} is not valid".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError($"{name}: Key {_key} is not valid");
             else
             {
-                $"{name}: Key {_key} is valid".Log(level: ZMethodsDebug.LogLevel.Assertion);
+                Debug.Log($"{name}: Key {_key} is valid");
                 _isValid = true;
             }
         }
@@ -145,7 +145,7 @@ namespace DeadWrongGames.ZCommon
                 else invalidCount++;
             }
 
-            $"Validated {instances.Count} assets: {validCount} valid, {invalidCount} invalid".Log(level: ZMethodsDebug.LogLevel.Info);
+            Debug.Log($"Validated {instances.Count} assets: {validCount} valid, {invalidCount} invalid");
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace DeadWrongGames.ZCommon
             AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
             if (settings == null)
             {
-                "Addressable asset settings are null. Returning null.".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError("Addressable asset settings are null. Returning null.");
                 return null; 
             }
                 
@@ -181,7 +181,7 @@ namespace DeadWrongGames.ZCommon
             }
             
             // Otherwise log error
-            "No Addressables entry found. Returning null".Log(level: ZMethodsDebug.LogLevel.Error);
+            Debug.LogError("No Addressables entry found. Returning null.");
             return null;
         }
         #endregion

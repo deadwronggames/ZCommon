@@ -28,14 +28,12 @@ namespace DeadWrongGames.ZCommon
         // "Disable" the not applicable methods
         public override AsyncOperationHandle<UnityEngine.Object> LoadAssetAsync()
         {
-            // TODO should ust throw and ideally be caught not here but by logger
-            // $"{name}: Cannot load single asset from a folder. Use LoadAssetsAsync instead. Returning default.".Log(level: ZMethodsDebug.LogLevel.Error);
-            return default;
+            throw new InvalidOperationException($"{name}: Cannot load a single asset from a folder. Use LoadAssetsAsync (plural) instead.");
         }
         
         public override void ReleaseAsset(AsyncOperationHandle<UnityEngine.Object> handle)
         {
-            // TODO "{name}: Cannot release a single asset. Use ReleaseAssets instead. Returning.".Log(level: ZMethodsDebug.LogLevel.Error);
+            throw new InvalidOperationException($"{name}: Cannot release a single asset. Use ReleaseAssets (plural) instead..");
         }
         
 #if UNITY_EDITOR
@@ -49,20 +47,20 @@ namespace DeadWrongGames.ZCommon
             // Safety checks and get folder entry from either reference or key
             if (_assetReference == null && _key == NOT_SET_STRING)
             {
-                // TODO "Folder reference and key are null. Returning.".Log(level: ZMethodsDebug.LogLevel.Warning);
+                Debug.LogWarning("Folder reference and key are null. Returning.");
                 return;
             }
 
             AddressableAssetEntry folderEntry = (_key != NOT_SET_STRING) ? GetReferenceEntry(_key) : GetReferenceEntry(_assetReference); // Sometimes _assetReference weirdly thinks that it is not null when it should be. But does not make much of a difference.
             if (folderEntry == null)  
             {
-                // TODO "No Addressables entry found. Returning.".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError("No Addressables entry found. Returning.");
                 return;
             }
 
             if (!folderEntry.IsFolder)
             {
-                // TODO $"{folderEntry.address} is not a folder entry. Returning.".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError($"{folderEntry.address} is not a folder entry. Returning.");
                 return;
             }
             
@@ -76,7 +74,7 @@ namespace DeadWrongGames.ZCommon
             _assetReference = null;
             _isValid = _subKeys.Count > 0;
             
-            // TODO $"{name}: Added {_subKeys.Count} sub keys from folder {folderEntry.address}".Log(level: ZMethodsDebug.LogLevel.Assertion);
+            Debug.Log($"{name}: Added {_subKeys.Count} sub-keys from folder {folderEntry.address}");
         }
 
         protected override void ClearReference()
@@ -91,15 +89,15 @@ namespace DeadWrongGames.ZCommon
             AddressableAssetEntry folderEntry = GetReferenceEntry(_key);
             if (folderEntry.SubAssets == null)
             {
-                // TODO $"{name}: Sub assets are corrupted.".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError($"{name}: Sub-assets are corrupted.");
                 _isValid = false;
             }
             else foreach (AddressableAssetEntry child in folderEntry.SubAssets.Where(child => child == null || GetReferenceEntry(child.address, doSubAssetsOnly: true) == null))
             {
-                // TODO $"{name}: Sub key {child?.address} is not valid".Log(level: ZMethodsDebug.LogLevel.Error);
+                Debug.LogError($"{name}: Sub-key {child?.address} is not valid");
                 _isValid = false;
             }
-            // TODO if (_isValid) $"{name}: All sub keys are valid".Log(level: ZMethodsDebug.LogLevel.Assertion);
+            if (_isValid) Debug.Log($"{name}: All sub-keys are valid");
         }
         #endregion
 #endif
