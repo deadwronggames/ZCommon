@@ -1,12 +1,12 @@
 {
     "name": "com.deadwronggames.zcommon",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "ZCommon",
     "description": "Classes, Structs, interfaces and Enums that are useful for all kinds of programming patterns.\n\nUse via DeadWrongGames.ZCommon namespace",
     "unity": "6.0",
     "dependencies": {
         "com.unity.addressables": "2.7.2",
-        "com.deadwronggames.zutils": "1.0.0"
+        "com.deadwronggames.zutils": "1.0.1"
     },
     "author": {
         "name": "DeadWrong Games",
